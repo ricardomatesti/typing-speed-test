@@ -528,11 +528,18 @@ body {
     margin-left: 30px;
     margin-right: 30px;
   }
+
+  .game-finished-with-record {
+    grid-template-columns: calc(100vw - 60px);
+  }
 }
 
 @media (max-width: 650px) {
   .title-wrap {
     display: none;
+  }
+  .game-finished-with-record {
+    grid-template-columns: calc(100vw - 40px);
   }
 
   .test-scores-wrap {
@@ -578,5 +585,30 @@ body {
   .content {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  .mobile-score-label {
+    font-size: 20px;
+  }
+
+  .score-text {
+    font-size: 25px;
+  }
+
+  .go-again-button {
+    font-size: 25px;
+    height: 60px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+  .beat-this-score-button {
+    font-size: 25px;
+    height: 60px;
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .squared {
+    width: 25px;
   }
 }
