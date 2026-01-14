@@ -39,6 +39,7 @@ const beatThisRecord = document.getElementsByClassName(
 )[0];
 
 startButton.addEventListener("click", async (e) => {
+  e.stopPropagation();
   detenerContador();
   await startGame();
 });
