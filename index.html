@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Typing Speed Test</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="top-bar">
+        <div class="title-icon">
+          <div class="icon">
+            <img class="logo-img" src="/assets/images/logo-small.svg" />
+          </div>
+          <div class="title-wrap">
+            <p class="title font-weight-700">Typing Speed Test</p>
+            <p class="subtitle font-weight-400">
+              Type as fast as you can in 60 seconds
+            </p>
+          </div>
+        </div>
+        <div class="personal-best">
+          <img
+            class="icon-personal-best"
+            src="/assets/images/icon-personal-best.svg"
+          />
+          <div class="pb-text-wrap">
+            <p class="label font-weight-400">Personal Best:</p>
+            <p class="pb-text font-weight-400" id="personal-best">90 WPM</p>
+          </div>
+        </div>
+      </div>
+      <div class="test-body hidden">
+        <div class="menu">
+          <div class="stats">
+            <div class="single-stat">
+              <p class="label font-weight-400">WPM:</p>
+              <p class="stat-text font-weight-700" id="wpm">0</p>
+            </div>
+            <div class="vdivider"></div>
+            <div class="single-stat">
+              <p class="label font-weight-400">Accuracy:</p>
+              <p class="stat-text font-weight-700" id="accuracy">100%</p>
+            </div>
+            <div class="vdivider"></div>
+            <div class="single-stat">
+              <p class="label font-weight-400">Time:</p>
+              <p class="stat-text font-weight-700" id="time">0:60</p>
+            </div>
+          </div>
+          <div class="configuration">
+            <div class="single-configuration">
+              <p class="label font-weight-400">Difficulty:</p>
+              <div class="button-group" id="difficulty-group">
+                <button
+                  class="config-button active"
+                  data-type="difficulty"
+                  data-value="easy"
+                >
+                  Easy
+                </button>
+                <button
+                  class="config-button"
+                  data-type="difficulty"
+                  data-value="medium"
+                >
+                  Medium
+                </button>
+                <button
+                  class="config-button"
+                  data-type="difficulty"
+                  data-value="hard"
+                >
+                  Hard
+                </button>
+              </div>
+            </div>
+            <div class="vdivider taller"></div>
+            <div class="single-configuration">
+              <p class="label font-weight-400">Mode:</p>
+              <div class="button-group" id="mode-group">
+                <button
+                  class="config-button active"
+                  data-type="mode"
+                  data-value="timed"
+                >
+                  Timed (60s)
+                </button>
+                <button
+                  class="config-button"
+                  data-type="mode"
+                  data-value="passage"
+                >
+                  Passage
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hdivider"></div>
+
+        <div class="test-not-started">
+          <p class="font-weight-400 body-text blurry">
+            The archaeological expedition unearthed artifacts that complicated
+            prevailing theories about Bronze Age trade networks. Obsidian from
+            Anatolia, lapis lazuli from Afghanistan, and amber from the
+            Baltic—all discovered in a single Mycenaean tomb—suggested
+            commercial connections far more extensive than previously
+            hypothesized. \"We've underestimated ancient peoples' navigational
+            capabilities and their appetite for luxury goods,\" the lead
+            researcher observed. \"Globalization isn't as modern as we assume.\"
+          </p>
+          <div class="start-button-container">
+            <div class="start-button">
+              <p class="font-weight-400">Start Typing Test</p>
+            </div>
+            <p class="font-weight-400 start-text">
+              Or click the text and start typing
+            </p>
+          </div>
+        </div>
+
+        <div class="test-started hidden"></div>
+        <div class="hidden" id="restart">
+          <div class="hdivider"></div>
+
+          <div class="restart-button-container">
+            <div class="restart-button">
+              <p class="font-weight-400">Restart Test</p>
+              <img class="icon-restart" src="/assets/images/icon-restart.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-finished">
+        <img class="star-1" src="/assets/images/pattern-star-1.svg" />
+        <img class="star-2" src="/assets/images/pattern-star-2.svg" />
+        <div class="completed-image-wrap">
+          <img class="icon-completed" src="/assets/images/icon-completed.svg" />
+          <div class="icon-completed-back-1"></div>
+          <div class="icon-completed-back-2"></div>
+          <div class="icon-completed-back-3"></div>
+        </div>
+        <div class="test-completed-text-wrap">
+          <p class="test-completed-text-title font-weight-700">
+            Test Completed!
+          </p>
+          <p class="label font-weight-400">
+            Solid run. Keep pushing to beat your high score.
+          </p>
+        </div>
+        <div class="test-scores-wrap">
+          <div class="score-wrap">
+            <p class="label font-weight-400">WPM:</p>
+            <p class="score-text font-weight-700" id="wpm-score">85</p>
+          </div>
+          <div class="score-wrap">
+            <p class="label font-weight-400">Accuracy:</p>
+            <p class="score-text font-weight-700 correct" id="accuracy-score">
+              90%
+            </p>
+          </div>
+          <div class="score-wrap">
+            <p class="label font-weight-400">Characters:</p>
+            <div class="characters-score">
+              <p
+                class="score-text font-weight-700 correct"
+                id="correct-characters-score"
+              >
+                120
+              </p>
+              <p class="score-text font-weight-700 slash">/</p>
+              <p
+                class="score-text font-weight-700 incorrect non-underlined"
+                id="incorrect-characters-score"
+              >
+                5
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="go-again-button-container">
+          <div class="go-again-button">
+            <p class="font-weight-600">Go Again</p>
+            <img
+              class="icon-restart squared invert-color"
+              src="/assets/images/icon-restart.svg"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="game-finished-with-record hidden">
+        <div class="centerer">
+          <div class="high-score-items">
+            <div class="record-image-wrap">
+              <img
+                class="icon-completed"
+                src="/assets/images/icon-new-pb.svg"
+              />
+            </div>
+            <div class="test-completed-text-wrap">
+              <p class="test-completed-text-title font-weight-700">
+                High Score Smashed!
+              </p>
+              <p class="label font-weight-400">
+                You're getting faster. That was incredible typing.
+              </p>
+            </div>
+            <div class="test-high-scores-wrap">
+              <div class="score-wrap">
+                <p class="label font-weight-400">WPM:</p>
+                <p class="score-text font-weight-700" id="wpm-score-record">
+                  85
+                </p>
+              </div>
+              <div class="score-wrap">
+                <p class="label font-weight-400">Accuracy:</p>
+                <p
+                  class="score-text font-weight-700 correct"
+                  id="accuracy-score-record"
+                >
+                  90%
+                </p>
+              </div>
+              <div class="score-wrap">
+                <p class="label font-weight-400">Characters:</p>
+                <div class="characters-score-record">
+                  <p
+                    class="score-text font-weight-700 correct"
+                    id="correct-characters-score"
+                  >
+                    120
+                  </p>
+                  <p class="score-text font-weight-700 slash">/</p>
+                  <p
+                    class="score-text font-weight-700 incorrect non-underlined"
+                    id="incorrect-characters-score-record"
+                  >
+                    5
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="go-again-button-container">
+              <div class="beat-this-score-button">
+                <p class="font-weight-600">Beat this score</p>
+                <img
+                  class="icon-restart squared invert-color"
+                  src="/assets/images/icon-restart.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="confetti-wraper">
+          <img
+            class="confetti-pattern"
+            src="/assets/images/pattern-confetti.svg"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script src="typing-logic.js"></script>
+  </body>
+</html>
