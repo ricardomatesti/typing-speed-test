@@ -515,6 +515,16 @@ body {
     flex-direction: column;
   }
 
+  .test-high-scores-wrap {
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .test-completed-text-title {
+    font-size: 30px;
+    text-align: center;
+  }
+
   .score-wrap {
     width: calc(100vw - 50px);
   }
