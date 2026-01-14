@@ -190,6 +190,31 @@ const endGame = function () {
   document.getElementById("restart").classList.add("hidden");
   gameStarted = false;
 
+  if (personalBest === "0") {
+    testBody.classList.add("hidden");
+    gameFinished.classList.remove("hidden");
+
+    document.getElementById("wpm-score").innerText = wpm;
+
+    let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
+    document.getElementById("accuracy-score").innerText = accuracy + "%";
+
+    document.getElementById("correct-characters-score").innerText =
+      charsWellWritten;
+    document.getElementById("incorrect-characters-score").innerText = mistakes;
+
+    document.getElementsByClassName("test-completed-text-title")[0].innerText =
+      "Baseline Established!";
+    document.getElementById("test-completed-text-subtitle").innerText =
+      "You've set the bar. Now the real challenge begins—time to beat it.";
+
+    document.getElementById("go-again-button-text").innerText =
+      "Beat this score";
+
+    testStartedDiv.innerHTML = "";
+    return;
+  }
+
   if (!record) {
     testBody.classList.add("hidden");
     gameFinished.classList.remove("hidden");
