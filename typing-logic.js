@@ -29,6 +29,8 @@ const gameFinishedWithRecord = document.getElementsByClassName(
 const startButtonContainer = document.getElementsByClassName(
   "start-button-container"
 )[0];
+const selectDifficulty = document.getElementById("difficulty");
+const selectMode = document.getElementById("mode");
 
 const goAgainButton = document.getElementsByClassName("go-again-button")[0];
 
@@ -282,3 +284,13 @@ function chargePB() {
   const personalBestLabel = document.getElementById("personal-best");
   personalBestLabel.innerText = personalBest + " WPM";
 }
+
+selectDifficulty.addEventListener("change", (e) => {
+  const newDifficulty = e.target.value;
+  config["difficulty"] = newDifficulty;
+});
+
+selectMode.addEventListener("change", (e) => {
+  const newMode = e.target.value;
+  config["mode"] = newMode;
+});

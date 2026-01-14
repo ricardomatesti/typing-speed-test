@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="test-body hidden">
+      <div class="test-body">
         <div class="menu">
           <div class="stats">
             <div class="single-stat">
@@ -108,6 +108,21 @@
                 </button>
               </div>
             </div>
+          </div>
+          <div class="mobile-configuration hidden">
+            <select
+              name="difficulty"
+              class="mobile-config-button"
+              id="difficulty"
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+            <select name="mode" class="mobile-config-button" id="mode">
+              <option value="timed">Timed (60s)</option>
+              <option value="passage">Passsage</option>
+            </select>
           </div>
         </div>
         <div class="hdivider"></div>
@@ -204,7 +219,7 @@
         </div>
       </div>
 
-      <div class="game-finished-with-record">
+      <div class="game-finished-with-record hidden">
         <div class="centerer">
           <div class="high-score-items">
             <div class="record-image-wrap">
