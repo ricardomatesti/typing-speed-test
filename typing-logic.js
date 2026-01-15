@@ -75,7 +75,7 @@ const startGame = async function () {
   document.getElementById("wpm").innerText = "0";
   document.getElementById("restart").classList.remove("hidden");
   testStartedDiv.innerHTML = "";
-  navigator.virtualKeyboard.show();
+  openKeyboard();
   startTimer();
 
   // Crear el texto nuevo y poner la primera letra con class target
@@ -299,7 +299,7 @@ startButtonContainer.addEventListener("click", async (e) => {
 });
 
 testStartedDiv.addEventListener("click", () => {
-  navigator.virtualKeyboard.show();
+  openKeyboard();
 });
 
 document.addEventListener("DOMContentLoaded", chargePB);
@@ -324,3 +324,8 @@ selectMode.addEventListener("change", (e) => {
   const newMode = e.target.value;
   config["mode"] = newMode;
 });
+
+const openKeyboard = function () {
+  const input = document.getElementById("hidden-input");
+  input.focus();
+};
