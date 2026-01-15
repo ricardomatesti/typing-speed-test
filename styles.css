@@ -537,6 +537,17 @@ body {
     max-width: 100vw;
     margin-left: -20px;
   }
+
+  .body-text {
+    font-size: 25px;
+  }
+  .incorrect {
+    text-decoration-thickness: 2px;
+  }
+  .test-started {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 650px) {

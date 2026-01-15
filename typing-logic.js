@@ -346,6 +346,9 @@ hiddenInput.addEventListener("input", (e) => {
     currentIndex--;
     lastInputTextLength--;
 
+    const nextChar = charList[currentIndex - 1];
+    nextChar.scrollIntoView({ behavior: "auto", block: "center" });
+
     if (charList[currentIndex].innerText === " ") {
       wordsWritten--;
     }
@@ -357,6 +360,9 @@ hiddenInput.addEventListener("input", (e) => {
   }
 
   const accuracyText = document.getElementById("accuracy");
+
+  const nextChar = charList[currentIndex + 1];
+  nextChar.scrollIntoView({ behavior: "auto", block: "center" });
 
   if (key === targetChar.innerText) {
     targetChar.classList.add("correct");
