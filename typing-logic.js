@@ -89,6 +89,8 @@ const startGame = async function () {
 window.addEventListener("keydown", (e) => {
   if (!gameStarted) return;
 
+  return;
+  testStartedDiv.innerText = e.type;
   hiddenInput.blur();
 
   const key = e.key;
