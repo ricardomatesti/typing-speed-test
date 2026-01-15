@@ -89,7 +89,7 @@ const startGame = async function () {
 window.addEventListener("keydown", (e) => {
   if (!gameStarted) return;
 
-  input.blur();
+  hiddenInput.blur();
 
   const key = e.key;
   const targetChar = charList[currentIndex];
