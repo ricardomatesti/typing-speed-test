@@ -4,7 +4,7 @@
 
 ## Welcome! 👋
 
-This is a solution to the [Typing Speed Test challenge](https://www.frontendmentor.io/challenges/typing-speed-test). You can check the [live site right here](https://to-do.com).
+This is a solution to the [Typing Speed Test challenge](https://www.frontendmentor.io/challenges/typing-speed-test). You can check the [live site right here](https://typing-speed-test-5fwtb2eeg.vercel.app/).
 
 It was built using vanilla HTML, CSS and JavaScript.
 
