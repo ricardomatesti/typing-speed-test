@@ -8,6 +8,7 @@ var charsWellWritten = 0;
 var time = 0;
 var wordsWritten = 0;
 let cronometro;
+let lastInputTextLength = 0;
 
 var personalBest = "";
 
@@ -16,6 +17,7 @@ const config = {
   mode: "timed",
 };
 
+const hiddenInput = document.getElementById("hidden-input");
 const startButton = document.getElementsByClassName("start-button")[0];
 const restartButton = document.getElementsByClassName("restart-button")[0];
 const testBody = document.getElementsByClassName("test-body")[0];
@@ -86,6 +88,8 @@ const startGame = async function () {
 
 window.addEventListener("keydown", (e) => {
   if (!gameStarted) return;
+
+  input.blur();
 
   const key = e.key;
   const targetChar = charList[currentIndex];
@@ -326,6 +330,55 @@ selectMode.addEventListener("change", (e) => {
 });
 
 const openKeyboard = function () {
-  const input = document.getElementById("hidden-input");
-  input.focus();
+  hiddenInput.focus();
 };
+
+hiddenInput.addEventListener("input", (e) => {
+  let text = e.target.value;
+  let key = text[text.length - 1];
+
+  if (!gameStarted) return;
+
+  const targetChar = charList[currentIndex];
+
+  if (text.length < lastInputTextLength) {
+    updateCursor(currentIndex, false);
+    currentIndex--;
+    lastInputTextLength--;
+
+    if (charList[currentIndex].innerText === " ") {
+      wordsWritten--;
+    }
+    return;
+  }
+
+  if (targetChar.innerText === " ") {
+    wordsWritten++;
+  }
+
+  const accuracyText = document.getElementById("accuracy");
+
+  if (key === targetChar.innerText) {
+    targetChar.classList.add("correct");
+    targetChar.classList.remove("target");
+
+    charsWellWritten++;
+  } else {
+    targetChar.classList.add("incorrect");
+
+    mistakes++;
+  }
+  let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
+  accuracyText.innerHTML = accuracy + "%";
+
+  currentIndex++;
+  lastInputTextLength = text.length;
+
+  if (currentIndex < charList.length) {
+    updateCursor(currentIndex, true);
+  } else {
+    wordsWritten++;
+    detenerContador();
+    endGame();
+  }
+});
