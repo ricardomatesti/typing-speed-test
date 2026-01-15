@@ -75,7 +75,7 @@ const startGame = async function () {
   document.getElementById("wpm").innerText = "0";
   document.getElementById("restart").classList.remove("hidden");
   testStartedDiv.innerHTML = "";
-
+  navigator.virtualKeyboard.show();
   startTimer();
 
   // Crear el texto nuevo y poner la primera letra con class target
@@ -296,6 +296,10 @@ restartButton.addEventListener("click", async (e) => {
 startButtonContainer.addEventListener("click", async (e) => {
   detenerContador();
   await startGame();
+});
+
+testStartedDiv.addEventListener("click", () => {
+  navigator.virtualKeyboard.show();
 });
 
 document.addEventListener("DOMContentLoaded", chargePB);
