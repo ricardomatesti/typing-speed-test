@@ -331,7 +331,7 @@ hiddenInput.addEventListener("input", (e) => {
   if (currentIndex < charList.length) {
     updateCursor(currentIndex, true);
     const nextChar = charList[currentIndex + 1];
-    nextChar.scrollIntoView({ behavior: "auto", block: "center" });
+    nextChar?.scrollIntoView({ behavior: "auto", block: "center" });
   } else {
     wordsWritten++;
     detenerContador();
