@@ -63,6 +63,7 @@ const startGame = async function () {
   time = 0;
   gameStarted = true;
   currentIndex = 0;
+  lastInputTextLength = 0;
   wordsWritten = 0;
   charsWellWritten = 0;
   mistakes = 0;
@@ -76,6 +77,7 @@ const startGame = async function () {
   document.getElementById("accuracy").innerText = "100%";
   document.getElementById("wpm").innerText = "0";
   document.getElementById("restart").classList.remove("hidden");
+  hiddenInput.value = "";
   testStartedDiv.innerHTML = "";
   openKeyboard();
   startTimer();
@@ -85,59 +87,6 @@ const startGame = async function () {
   populateNewText(gameText);
   charList = document.getElementsByClassName("char");
 };
-
-window.addEventListener("keydown", (e) => {
-  if (!gameStarted) return;
-
-  return;
-  testStartedDiv.innerText = e.type;
-  hiddenInput.blur();
-
-  const key = e.key;
-  const targetChar = charList[currentIndex];
-
-  if (key === "Backspace" && currentIndex > 0) {
-    updateCursor(currentIndex, false);
-    currentIndex--;
-
-    if (charList[currentIndex].innerText === " ") {
-      wordsWritten--;
-    }
-    return;
-  }
-
-  // Ignorar teclas especiales (Shift, Alt, etc.)
-  if (key.length !== 1) return;
-
-  if (targetChar.innerText === " ") {
-    wordsWritten++;
-  }
-
-  const accuracyText = document.getElementById("accuracy");
-
-  if (key === targetChar.innerText) {
-    targetChar.classList.add("correct");
-    targetChar.classList.remove("target");
-
-    charsWellWritten++;
-  } else {
-    targetChar.classList.add("incorrect");
-
-    mistakes++;
-  }
-  let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
-  accuracyText.innerHTML = accuracy + "%";
-
-  currentIndex++;
-
-  if (currentIndex < charList.length) {
-    updateCursor(currentIndex, true);
-  } else {
-    wordsWritten++;
-    detenerContador();
-    endGame();
-  }
-});
 
 const updateCursor = function (index, moveForward) {
   if (moveForward) {
@@ -203,7 +152,7 @@ const endGame = function () {
 
     document.getElementById("wpm-score").innerText = wpm;
 
-    let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
+    let accuracy = calculateAccuracy(mistakes, charList.length);
     document.getElementById("accuracy-score").innerText = accuracy + "%";
 
     document.getElementById("correct-characters-score").innerText =
@@ -228,7 +177,7 @@ const endGame = function () {
 
     document.getElementById("wpm-score").innerText = wpm;
 
-    let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
+    let accuracy = calculateAccuracy(mistakes, charList.length);
     document.getElementById("accuracy-score").innerText = accuracy + "%";
 
     document.getElementById("correct-characters-score").innerText =
@@ -244,7 +193,7 @@ const endGame = function () {
 
   document.getElementById("wpm-score-record").innerText = wpm;
 
-  let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
+  let accuracy = calculateAccuracy(mistakes, charList.length);
   document.getElementById("accuracy-score-record").innerText = accuracy + "%";
 
   document.getElementById("correct-characters-score-record").innerText =
@@ -363,9 +312,6 @@ hiddenInput.addEventListener("input", (e) => {
 
   const accuracyText = document.getElementById("accuracy");
 
-  const nextChar = charList[currentIndex + 1];
-  nextChar.scrollIntoView({ behavior: "auto", block: "center" });
-
   if (key === targetChar.innerText) {
     targetChar.classList.add("correct");
     targetChar.classList.remove("target");
@@ -376,7 +322,7 @@ hiddenInput.addEventListener("input", (e) => {
 
     mistakes++;
   }
-  let accuracy = Math.floor(100 - (mistakes / charList.length) * 100);
+  let accuracy = calculateAccuracy(mistakes, charList.length);
   accuracyText.innerHTML = accuracy + "%";
 
   currentIndex++;
@@ -384,9 +330,15 @@ hiddenInput.addEventListener("input", (e) => {
 
   if (currentIndex < charList.length) {
     updateCursor(currentIndex, true);
+    const nextChar = charList[currentIndex + 1];
+    nextChar.scrollIntoView({ behavior: "auto", block: "center" });
   } else {
     wordsWritten++;
     detenerContador();
     endGame();
   }
 });
+
+const calculateAccuracy = function (mistakes, length) {
+  return Math.max(Math.floor(100 - (mistakes / length) * 100), 0);
+};
