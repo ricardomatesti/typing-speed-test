@@ -206,6 +206,7 @@ const endGame = function () {
 const verifyIfRecord = function (wpm) {
   if (personalBest < wpm) {
     localStorage.setItem("personalBest", wpm);
+    personalBest = wpm;
     const personalBestLabel = document.getElementById("personal-best");
     personalBestLabel.innerText = wpm + " WPM";
     return true;
