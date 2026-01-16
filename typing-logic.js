@@ -116,7 +116,7 @@ function startTimer() {
     const mode = config["mode"];
     if (mode === "timed") {
       document.getElementById("time").innerText =
-        "0:" + (60 - time).padStart(2, "0");
+        "0:" + String(60 - time).padStart(2, "0");
     } else {
       const [minutes, seconds] = getMinutesAndSeconds(time);
       document.getElementById("time").innerText = minutes + ":" + seconds;
