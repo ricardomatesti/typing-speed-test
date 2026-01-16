@@ -179,6 +179,26 @@ body {
   border-color: var(--blue-400);
 }
 
+.skeleton {
+  width: full;
+  height: 150px;
+  background-color: var(--neutral-400);
+  border-radius: 4px;
+  animation: skeleton-animation 800ms ease-in-out infinite;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    background-color: hsl(0, 0%, 40%);
+  }
+  50% {
+    background-color: hsl(0, 0%, 20%);
+  }
+  100% {
+    background-color: hsl(0, 0%, 40%);
+  }
+}
+
 .body-text {
   font-size: 40px;
   color: var(--neutral-400);

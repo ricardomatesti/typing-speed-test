@@ -78,7 +78,12 @@ const startGame = async function () {
   document.getElementById("wpm").innerText = "0";
   document.getElementById("restart").classList.remove("hidden");
   hiddenInput.value = "";
+
+  const skeleton = createSkeleton();
+
   testStartedDiv.innerHTML = "";
+  testStartedDiv.appendChild(skeleton);
+
   openKeyboard();
 
   // Crear el texto nuevo y poner la primera letra con class target
@@ -87,6 +92,12 @@ const startGame = async function () {
 
   startTimer();
   charList = document.getElementsByClassName("char");
+};
+
+const createSkeleton = function () {
+  const skeleton = document.createElement("div");
+  skeleton.classList.add("skeleton");
+  return skeleton;
 };
 
 const updateCursor = function (index, moveForward) {
@@ -102,6 +113,7 @@ const updateCursor = function (index, moveForward) {
 };
 
 const populateNewText = function (text) {
+  testStartedDiv.innerHTML = "";
   text.split("").forEach((letter, currentIndex) => {
     const span = document.createElement("span");
     span.innerText = letter;
