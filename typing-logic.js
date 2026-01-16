@@ -80,11 +80,12 @@ const startGame = async function () {
   hiddenInput.value = "";
   testStartedDiv.innerHTML = "";
   openKeyboard();
-  startTimer();
 
   // Crear el texto nuevo y poner la primera letra con class target
   gameText = await getTextForTheGame();
   populateNewText(gameText);
+
+  startTimer();
   charList = document.getElementsByClassName("char");
 };
 
